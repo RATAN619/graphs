@@ -1,0 +1,44 @@
+import java.util.LinkedList;
+
+public class graph {
+	 int n;
+	public LinkedList<nodes> adj[];
+	public LinkedList<nodes> ad;
+	public graph(int n)
+	{  this.n=n;
+	     ad=new LinkedList<nodes>();
+		 adj=(LinkedList<nodes>[])new LinkedList[n];	
+		 for(int i=0;i<n;i++)
+		 {
+			 adj[i]=new LinkedList<nodes>();
+		 }
+	}
+	public void addEdge(nodes e)
+	{
+		int v=e.either();
+		int w=e.other(v);
+		adj[v].add(e);
+		adj[w].add(e);
+		ad.add(e);
+	}
+	public Iterable<nodes> adj(int v) {
+		return adj[v];
+		
+	}
+	public void visit(boolean[] mark,int x,minheap mh)
+	{mark[x]=true;
+	 for(nodes i:this.adj(x)) {
+		if(!(mark[i.other(x)])) 
+		{
+			mh.insert(i);
+			System.out.println("after insert");
+			for(nodes ns:mh.al) {
+				System.out.println(ns.v+" "+ns.w+" "+ns.weight);
+			}
+			System.out.println("end");
+		}
+	 }
+		 
+	}
+
+}
